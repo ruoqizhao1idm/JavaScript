@@ -2,8 +2,9 @@
 // Automatically plays slides when the mouse is NOT hovering
 // Pauses autoplay when the mouse is hovering over the slide
 // Displays left/right arrows during hover for manual navigation
+
 // ===========================
-// Slider class (OOP structure)
+// Image Slider (OOP structure)
 // ===========================
 class Slider {
   constructor(data, containerId, interval = 2000) {
@@ -141,19 +142,20 @@ const slidesData = [
   }
 ];
 
-// Initialize the slider
-new Slider(slidesData, "hero-slider");
+// Initialize slider (only if exists)
+document.addEventListener("DOMContentLoaded", () => {
+  const heroSlider = document.getElementById("hero-slider");
+  if (heroSlider) {
+    new Slider(slidesData, "hero-slider");
+  }
+});
 
 // ===========================
 // Contact form behavior
 // ===========================
 document.addEventListener("DOMContentLoaded", () => {
   const contactForm = document.querySelector(".contact-form");
-
-  if (!contactForm) {
-    console.error("Contact form not found!");
-    return;
-  }
+  if (!contactForm) return;
 
   contactForm.addEventListener("submit", (event) => {
     event.preventDefault();
@@ -161,7 +163,6 @@ document.addEventListener("DOMContentLoaded", () => {
     const email = document.getElementById("email")?.value.trim() || "(Not provided)";
     const message = document.getElementById("message")?.value.trim() || "(No message)";
 
- // Log formatted form data
     console.log(`
 ========= New Form Submission =========
 Email: ${email}
@@ -172,4 +173,46 @@ Message: ${message}
     alert("Thank you for your message! Your information has been submitted.");
     contactForm.reset();
   });
+});
+
+// ===========================
+// Rolling text ticker 
+// ===========================
+class LoopTicker {
+  constructor(container, texts, speed = 1.5) {
+    this.container = container;
+    this.texts = texts;
+    this.speed = speed;
+    this.position = container.offsetWidth;
+    this.setup();
+    this.loop();
+  }
+
+  setup() {
+    this.container.innerHTML = this.texts.map(t => `<span>${t}</span>`).join('');
+  }
+
+  loop() {
+    this.position -= this.speed;
+    this.container.style.left = this.position + 'px';
+
+    if (this.position < -this.container.scrollWidth) {
+      this.position = this.container.parentElement.offsetWidth;
+    }
+
+    requestAnimationFrame(() => this.loop());
+  }
+}
+
+// Initialize ticker (only on project page)
+document.addEventListener("DOMContentLoaded", () => {
+  const ticker = document.getElementById("ticker");
+  if (!ticker) return;
+
+  const sentences = [
+    'Design meets interaction — exploring creative technology.',
+    'Bringing ideas to life with code and imagination.',
+    'Always learning, always creating.'
+  ];
+  new LoopTicker(ticker, sentences, 1.5);
 });

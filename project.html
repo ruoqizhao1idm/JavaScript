@@ -6,33 +6,54 @@
   <title>Projects - Qi’s Portfolio</title>
   <link rel="stylesheet" href="style.css" />
   <link rel="icon" href="pt/logo.png" />
+
+  <style>
+    /* Rolling text bar (deep blue version)  */
+    .ticker-box {
+      width: 100%;
+      overflow: hidden;
+      background: #0a1a3a;
+      color: #fff;
+      font-size: 1.1rem;
+      font-family: "Microsoft YaHei", sans-serif;
+      border-top: 2px solid #1f3b68;
+      border-bottom: 2px solid #1f3b68;
+      padding: 18px 0;
+      position: relative;
+      box-sizing: border-box;
+      letter-spacing: 0.5px;
+    }
+
+    .ticker-content {
+      display: inline-block;
+      white-space: nowrap;
+      position: relative;
+      left: 100%;
+    }
+
+    .ticker-content span {
+      margin-right: 100px;
+    }
+  </style>
 </head>
+
 <body>
-<!-- =======================
-     Top navigation (same as homepage)
-     ======================= -->
 <header class="site-header">
   <div class="container nav-container">
     <a class="logo" href=" ">
       <img src="pt/logo.png" alt="Qi Logo" />
       <span>Portfolio</span>
     </a >
-
-    <!-- Right-side navigation menu -->
     <nav class="main-nav" aria-label="Main navigation">
       <ul class="menu">
         <li class="menu-item"><a href="index.html">Home</a>
-
-        <!-- About me with dropdown menu -->
         <li class="menu-item dropdown has-caret">
           About me
           <ul class="submenu" aria-label="About me submenu">
-            <li><a href="about me_work.html">My work</a></li>
+            <li><a href="about me_work.html">My work</a ></li>
             <li><a href="about me_hobby.html">My hobby</a></li>
           </ul>
         </li>
-
-        <!-- Highlight current page -->
         <li class="menu-item"><a class="active" href="project.html">Projects</a ></li>
         <li class="menu-item"><a href="contact me.html">Contact me</a></li>
       </ul>
@@ -40,81 +61,67 @@
   </div>
 </header>
 
-<!-- =======================
-     Hero section: full-width background image
-     ======================= -->
+<!-- Hero section -->
 <section class="hero hero--projects" aria-label="Projects hero image">
 </section>
 
-<!-- =======================
-     Project list
-     ======================= -->
-<main class="container projects-wrap">
+<!-- Rolling text bar -->
+<div class="ticker-box">
+  <div class="ticker-content" id="ticker"></div>
+</div>
 
-  <!-- Project 1: left text + right large image -->
+<!-- Project list -->
+<main class="container projects-wrap">
   <section class="project-block grid-2" id="project1">
     <div class="project-text">
       <h2>Project 1</h2>
       <a class="project-link" href="#" target="_blank" rel="noopener">Hydrology Museum</a >
-
-      <!-- Brief description sections -->
       <div class="project-meta">
         <h3>Concept &amp; Goal</h3>
         <p>
           This project explores how to make hydrological knowledge more engaging in museum spaces,
-          addressing the lack of real interaction in traditional science communication. It is designed
-          to work in combination with an interactive mobile app, extending the learning experience
-          beyond the physical exhibition.
-          <br><br><br><br><br>
+          addressing the lack of real interaction in traditional science communication.
+          It is designed to work in combination with an interactive mobile app.
         </p >
       </div>
-
       <div class="project-meta">
         <h3>Design &amp; Interaction</h3>
         <p>
-          It features a hydrological identity test and sound installations simulating floods. Inspired
-          by interactive ritual chains, it fosters community engagement and emotional connection.
-          <br><br><br><br><br>
+          It features a hydrological identity test and sound installations simulating floods.
+          Inspired by interactive ritual chains, it fosters community engagement and emotional connection.
         </p >
       </div>
-
       <div class="project-meta">
         <h3>Outcome &amp; Future Work</h3>
         <p>
-          The system shows strong potential for immersive learning, with future work focusing on cost,
-          location adaptability, and app integration for a richer visitor experience.
-          <br><br><br><br><br>
+          The system shows strong potential for immersive learning,
+          with future work focusing on cost, location adaptability, and app integration.
         </p >
       </div>
     </div>
-
     <div class="project-image">
       <img src="pt/pro2.png" alt="Hydrology Museum Overview" />
     </div>
   </section>
 
-  <!-- Project 2: title + full-width image -->
   <section class="project-block" id="project2">
     <h2>Project 2</h2>
     <a class="project-link" href="#" target="_blank" rel="noopener">Attention Economy</a >
     <p class="project-intro">
-      This project visualizes how human attention creates value in the digital age. Using a plant-based
-      installation, it converts attention into light, symbolizing energy flow and value creation. It offers a
-      tangible reflection on the attention economy, linking digital behavior to natural processes.
+      This project visualizes how human attention creates value in the digital age.
+      Using a plant-based installation, it converts attention into light, symbolizing energy flow and value creation.
     </p >
     <div class="project-image wide">
       <img src="pt/pro3.png" alt="Attention Economy Boards" />
     </div>
   </section>
 
-  <!-- Project 3: title + full-width image -->
   <section class="project-block" id="project3">
     <h2>Project 3</h2>
     <a class="project-link" href="#" target="_blank" rel="noopener">UI / App Design</a >
     <p class="project-intro">
       This UI design uses green as the main color, highlighting the theme of environmental sustainability.
-      The creative focus goes beyond material recycling, exploring the cyclical flow of knowledge and human
-      capability as part of a broader sustainable mindset.
+      The creative focus explores the cyclical flow of knowledge and human capability.
     </p >
     <div class="project-image wide">
       <img src="pt/pro4.png" alt="UI App Design Screens" />
@@ -122,14 +129,13 @@
   </section>
 </main>
 
-<!-- =======================
-     Footer (same as homepage)
-     ======================= -->
 <footer class="site-footer">
   <div class="container">
     © 2025 Ruoqi Zhao Portfolio. All rights reserved.
   </div>
 </footer>
 
+<!-- Link to combined JS -->
+<script src="script.js"></script>
 </body>
 </html>
