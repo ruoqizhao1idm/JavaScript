@@ -1,0 +1,561 @@
+/* =======================
+   Basic Variables (Global)
+   ======================= */
+:root{
+  --brand:#3bc0c7;           /* Main brand color (teal) */
+  --brand-ink:#1b8a91;       /* Darker shade for hover */
+  --text:#1f2937;            /* Primary text color */
+  --muted:#6b7280;           /* Secondary text color */
+  --bg:#ffffff;              /* White background */
+  --card:#f7f9fb;            /* Light gray for cards */
+  --shadow:0 8px 24px rgba(0,0,0,.08);
+  --radius:14px;
+
+  /* Menu details */
+  --menu-text:#111827;       /* Top menu text */
+  --menu-hover-bg:#f5f7fa;   /* Background when hovering submenu items */
+}
+
+/* =======================
+   Global Reset / Base
+   ======================= */
+*{ box-sizing:border-box; }
+html,body{
+  margin:0;
+  padding:0;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "PingFang SC",
+               "Hiragino Sans GB", "Microsoft YaHei", "Noto Sans CJK SC", Arial, sans-serif;
+  color:var(--text);
+  background:var(--bg);
+  line-height:1.6;
+}
+html{ scroll-behavior:smooth; }
+
+img{ display:block; max-width:100%; height:auto; }
+a{ color:inherit; text-decoration:none; }
+.container{ width:min(1120px, 92%); margin-inline:auto; }
+
+
+/* =======================
+   Buttons (Global Style)
+   ======================= */
+.btn{
+  display:inline-block;
+  padding:.75rem 1.25rem;
+  border:none;                 /* Remove default borders */
+  border-radius:10px;
+  background:var(--brand);
+  color:#fff;
+  font-weight:600;
+  letter-spacing:.2px;
+  cursor:pointer;
+  transition:transform .15s ease, background .2s ease;
+}
+.btn:hover{ background:var(--brand-ink); transform:translateY(-1px); }
+
+/* =========================================================
+   Header Navigation (Global)
+   ========================================================= */
+.site-header{
+  position:sticky; top:0; z-index:1000;
+  background:rgba(255,255,255,.85);
+  backdrop-filter:saturate(180%) blur(10px);
+  border-bottom:1px solid rgba(0,0,0,.06);
+}
+.nav-container{
+  display:flex; align-items:center; justify-content:space-between;
+  padding:.75rem 0;
+}
+.logo{ display:flex; align-items:center; gap:.5rem; font-weight:800; }
+.logo img{ width:28px; height:28px; object-fit:contain; }
+.logo span{ color:#334155; }
+
+.main-nav .menu{ list-style:none; display:flex; gap:1.25rem; margin:0; padding:0; }
+.menu-item > a{
+  padding:.5rem .25rem;
+  border-radius:6px;
+  color:#334155;
+  font-weight:600;
+}
+.menu-item > a:hover,
+.menu-item > a.active{ color:var(--brand); }
+
+/* Dropdown Menu (shared style) */
+.dropdown{ position:relative; cursor:default; }
+.has-caret::after{
+  content:" ▾"; font-size:.8em; color:#64748b;
+}
+.submenu{
+  position:absolute; left:0; top:calc(100% + .5rem);
+  min-width:180px;
+  padding:.4rem 0;             
+  background:#fff;
+  border:1px solid rgba(0,0,0,.06);
+  border-radius:12px;
+  box-shadow:0 8px 24px rgba(0,0,0,.10);
+  list-style:none; margin:0;
+  opacity:0; visibility:hidden; transform:translateY(-4px);
+  transition:opacity .15s ease, transform .15s ease, visibility .15s;
+}
+.submenu li a{
+  display:block;
+  padding:10px 18px;
+  color:var(--menu-text);
+  font-weight:500;
+  white-space:nowrap;
+  border-radius:8px;
+}
+.submenu li a:hover{
+  background:var(--menu-hover-bg);
+  color:var(--brand);
+}
+/* Show submenu only when hovering the parent */
+.dropdown:hover .submenu{ opacity:1; visibility:visible; transform:translateY(0); }
+@media (hover:none){
+  .submenu{ top:100%; }
+}
+
+/* =========================================================
+   Hero Section (multiple variants)
+   ========================================================= */
+
+/* =========================================================
+   Hero Slider (New)
+   ========================================================= */
+
+.hero {
+  position: relative;
+  height: 80vh;
+  width: 100%;
+  overflow: hidden;
+}
+
+.hero-slide {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-size: cover;
+  background-position: center;
+  opacity: 0;
+  z-index: 0;
+  transition: opacity 1s ease-in-out;
+}
+
+.hero-slide.active {
+  opacity: 1;
+  z-index: 1;
+}
+
+/* text container inside slider */
+.hero-inner {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  color: #fff;
+  padding: 30px 40px;
+  border-radius: 10px;
+  text-align: center;
+  width: 60%;
+  max-width: 700px;
+  z-index: 2; /* ensure text is above the slide image */
+}
+
+.hero-title {
+  font-size: 2.5rem;
+  margin-bottom: 15px;
+  font-weight: bold;
+}
+
+.hero-subtitle {
+  font-size: 1.2rem;
+  line-height: 1.5;
+}
+
+/* arrows */
+.hero-arrow {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  font-size: 3rem;
+  color: white;
+  background-color: rgba(0, 0, 0, 0.3);
+  padding: 10px 15px;
+  border-radius: 50%;
+  cursor: pointer;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.3s ease, background-color 0.3s ease;
+  z-index: 5;
+}
+
+.hero-arrow.left { left: 25px; }
+.hero-arrow.right { right: 25px; }
+
+.hero-arrow:hover {
+  background-color: rgba(0, 0, 0, 0.6);
+}
+
+.hero:hover .hero-arrow {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+
+/* Default Hero (for homepage) */
+.hero{
+  background-image: url("pt/back.png"); /* Replace with your background image */
+  background-size:cover; background-position:center;
+  position:relative; color:#fff;
+}
+.hero::before{
+  content:""; position:absolute; inset:0;
+  background:linear-gradient(180deg, rgba(0,0,0,.24), rgba(0,0,0,.25));
+}
+.hero-inner{
+  position:relative; z-index:1;
+  display:flex; flex-direction:column; align-items:center; justify-content:center;
+  min-height:75vh; text-align:center;
+}
+.hero-title{
+  font-size:clamp(32px, 5vw, 56px);
+  margin:0 0 .5rem;
+  text-shadow:0 4px 30px rgba(0,0,0,.25);
+}
+.hero-subtitle{ margin:0; color:#e5eef2; }
+
+/* Pure image hero for Project page */
+.hero--projects{
+  background-image:url("pt/pro1.png"); /* Replace with large image */
+  background-size:cover;
+  background-position:center;
+  min-height:70vh;
+  width:100%;
+}
+
+/* Contact page hero (light text + large background) */
+.contact-hero{
+  background-image:url("pt/c.png"); /* Replace with large image */
+  background-size:cover;
+  background-position:center;
+  background-repeat:no-repeat;
+  color:#fff;
+  padding:4rem 0;
+  min-height:85vh;
+  display:flex; align-items:center;
+}
+
+
+
+/* =========================================================
+   Layout Blocks & Cards
+   ========================================================= */
+
+/* Two-column layout (used for About/Work & Project text-image sections) */
+.grid-2{
+  display:grid;
+  grid-template-columns: 0.95fr 1fr; 
+  gap:2.2rem;
+  align-items:center;
+}
+.grid-2--reverse{ grid-template-columns: 1fr 0.95fr; }
+.grid-2--reverse > .job-image,
+.about-split--reverse > .about-image{ order:1; }
+.grid-2--reverse > .job-text,
+.about-split--reverse > .about-text{ order:2; }
+
+/* Two-column layout for About page */
+.about-split{
+  display:grid;
+  grid-template-columns: 1.1fr 1fr;
+  gap:2rem;
+  align-items:center;
+  padding:3.2rem 0;
+}
+.card{
+  background:var(--card);
+  border-radius:var(--radius);
+  box-shadow:var(--shadow);
+  overflow:hidden;
+}
+
+/* Text card (used across About/Work/Project sections) */
+.about-text,
+.job-text,
+.project-text{
+  background:var(--card);
+  border-radius:var(--radius);
+  box-shadow:var(--shadow);
+  padding:1.2rem 1.25rem;
+}
+.about-text h2{ margin-top:0; margin-bottom:.75rem; font-size:1.6rem; }
+.about-text p,
+.job-text p,
+.project-text p{ color:var(--muted); }
+
+/* Image container (shared) */
+.about-image img,
+.job-image img,
+.project-image img{ width:100%; height:100%; object-fit:cover; display:block; }
+
+.job-image,
+.project-image{
+  background:#fff;            /* Remove dark edge gaps */
+  border-radius:16px;
+  overflow:hidden;
+  box-shadow:var(--shadow);
+}
+
+/* Projects grid & cards (Homepage project section) */
+.section-title{ font-size:1.8rem; margin:2rem 0 1rem; }
+
+.projects-grid{
+  display:grid;
+  grid-template-columns: 1.4fr 1fr;
+  grid-template-rows: 1fr 1fr;
+  gap:1.25rem;
+}
+.project-card{
+  position:relative; border-radius:16px; overflow:hidden;
+  box-shadow:var(--shadow); background:#000;
+  display:flex; flex-direction:column;
+}
+.project-card img{
+  width:100%; height:100%; object-fit:cover;
+  filter:saturate(104%); transition:transform .35s ease;
+}
+.project-card:hover img{ transform:scale(1.04); }
+.project-card--large{ grid-row:1 / span 2; }
+.project-overlay{
+  position:absolute; inset:auto 0 0 0;
+  padding:1rem 1.1rem; color:#fff;
+  background:linear-gradient(180deg, rgba(0,0,0,0) 0%, rgba(0,0,0,.55) 80%);
+}
+.project-overlay h3{ margin:.5rem 0 .2rem; }
+.project-overlay p{ margin:.2rem 0 0; color:#e5e7eb; font-size:.95rem; }
+.project-caption{
+  padding:.9rem 1rem; background:#fff;
+  display:flex; flex-direction:column; gap:.25rem;
+}
+.project-caption strong{ color:#111827; }
+.project-caption span{ color:#6b7280; }
+
+/* Projects list page (text-left, image-right layout) */
+.projects-wrap{ padding:2.2rem 0 2.6rem; }
+.project-block{
+  margin:2rem 0 2.4rem;
+  border-bottom:1px solid #eef2f6;
+  padding-bottom:1.8rem;
+}
+.project-block h2{ margin:.5rem 0 .25rem; font-size:1.6rem; }
+.project-link{
+  color:var(--brand);
+  font-weight:700;
+  display:inline-block;
+  margin-bottom:.6rem;
+}
+.project-link:hover{ color:var(--brand-ink); }
+.project-intro{ color:var(--muted); max-width:900px; }
+.project-meta{ margin-top:.75rem; }
+.project-meta h3{ margin:.2rem 0; font-size:1.05rem; }
+.project-image.wide{ margin-top:.9rem; }
+
+/* =========================================================
+   Contact Section: Two form styles
+   ========================================================= */
+
+/* 1) Form on dark background (Contact page hero) */
+.contact-grid{
+  display:grid;
+  grid-template-columns:1.3fr 0.7fr;
+  gap:2rem;
+  align-items:center;          
+}
+.contact-left h1{
+  font-size:2rem;
+  color:#fff;
+  margin:0 0 .4rem;
+}
+.contact-left p{
+  margin:0 0 1.2rem;
+  color:#e8f0f2;
+}
+/* Form elements under dark background (inside contact-hero) */
+.contact-hero form{ display:flex; flex-direction:column; gap:.9rem; }
+.contact-hero .name-fields{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:.8rem;
+}
+.contact-hero label{
+  font-weight:600;
+  color:#f0f8fa;
+  font-size:.95rem;
+}
+.contact-hero input,
+.contact-hero textarea{
+  width:100%;
+  padding:.65rem .8rem;
+  border-radius:8px;
+  border:none;
+  outline:none;
+  font-size:.95rem;
+  color:#333;
+  background:#fff;           
+}
+.contact-hero input::placeholder,
+.contact-hero textarea::placeholder{ color:#888; }
+.contact-hero textarea{ resize:vertical; min-height:100px; }
+
+/* Right social section (on Contact page) */
+.contact-right{ text-align:center; color:#f2f6f7; }
+.insta-logo img{
+  width:80px; height:80px; margin-inline:auto; border-radius:16px;
+  box-shadow:0 4px 10px rgba(0,0,0,.25); transition:transform .25s ease;
+}
+.insta-logo:hover img{ transform:scale(1.05); }
+.insta-text{ margin-top:1rem; font-style:italic; color:#f5f7f8; }
+.email-text{ margin-top:.4rem; color:#f9fbfb; font-size:.95rem; }
+.email-text a{ color:#fff; text-decoration:underline; }
+
+/* 2) Light background form (Contact section on Homepage) */
+.contact{ padding:3rem 0; }
+.contact-form{
+  background:#fff;
+  padding:1.25rem;
+  border-radius:var(--radius);
+  box-shadow:var(--shadow);
+  display:grid;
+  gap:.7rem;
+}
+.contact-form label{
+  font-weight:600;
+  color:#374151;
+}
+.contact-form input,
+.contact-form textarea{
+  width:100%;
+  border:1px solid #e5e7eb;
+  border-radius:10px;
+  padding:.75rem .9rem;
+  font-size:1rem;
+  outline:none;
+  background:#f9fafb;
+  transition:border .15s ease, background .15s ease;
+}
+.contact-form textarea{
+  height:50px;          
+  resize:vertical;
+}
+.contact-form input:focus,
+.contact-form textarea:focus{
+  border-color:var(--brand);
+  background:#fff;
+}
+
+/* Contact footer (keep white background) */
+.site-footer{
+  margin-top:2rem;
+  padding:1.25rem 0;
+  border-top:1px solid #e5e7eb;
+  color:#6b7280;
+  text-align:center;
+  background:#fff;
+}
+
+/* =========================================================
+   About / Hobby Specific Sections
+   ========================================================= */
+
+/* Page headers & small titles */
+.page-head{ padding:2.2rem 0 1rem; }
+.page-title{ font-size:2.2rem; margin:0; }
+.section{ padding:1rem 0 1.2rem; }
+.minor-title{ font-size:1.25rem; margin:.25rem 0 .5rem; }
+
+/* Education list */
+.edu-list{ margin:.25rem 0 0; padding-left:1rem; color:var(--text); }
+.edu-list li{ margin:.25rem 0; }
+.edu-list em{ color:var(--muted); font-style:normal; }
+
+/* Hobby banner image */
+.banner{
+  border-radius:16px;
+  overflow:hidden;
+  box-shadow:var(--shadow);
+  background:#fff;
+  max-width:900px;
+  margin:0 auto;
+}
+.banner img{
+  width:100%;
+  height:500px;
+  object-fit:cover;
+  display:block;
+}
+
+/* Hobby intro text */
+.intro p{
+  font-size:1.15rem;
+  color:#1f2937;
+  text-align:center;
+  max-width:850px;
+  margin:1.4rem auto 0 auto;
+  line-height:1.8;
+}
+
+/* Hobby three-column interest cards */
+.hobby-grid{
+  display:grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap:1.2rem;
+}
+.hobby-card{
+  background:#fff; border-radius:14px; box-shadow:var(--shadow);
+  padding:.8rem; display:flex; flex-direction:column; gap:.5rem;
+}
+.hobby-thumb{ border-radius:12px; overflow:hidden; }
+.hobby-thumb img{ width:100%; height:200px; object-fit:cover; display:block; }
+.hobby-title{ margin:.2rem 0; font-size:1.05rem; }
+.hobby-desc{ margin:0; color:var(--muted); }
+
+/* =========================================================
+   Footer (shared across all non-contact-hero pages)
+   ========================================================= */
+
+/* =========================================================
+   Responsive
+   ========================================================= */
+@media (max-width: 980px){
+  /* About and grid sections become single column */
+  .about-split,
+  .about-split--reverse,
+  .grid-2,
+  .grid-2--reverse{ grid-template-columns:1fr; }
+
+  .about-split--reverse > .about-image,
+  .about-split--reverse > .about-text,
+  .grid-2--reverse > .job-image,
+  .grid-2--reverse > .job-text{ order:unset; }
+
+  /* Homepage project grid becomes single column */
+  .projects-grid{
+    grid-template-columns:1fr; grid-template-rows:auto;
+  }
+  .project-card--large{ grid-row:auto; }
+
+  /* Projects list page hero height */
+  .hero--projects{ min-height:40vh; }
+
+  /* Contact hero layout */
+  .contact-grid{ grid-template-columns:1fr; text-align:center; }
+  .contact-hero{ padding:3rem 0; }
+  .contact-hero form{ max-width:480px; margin:0 auto; }
+  .contact-left h1{ font-size:1.8rem; }
+
+  /* Hobby cards become single column */
+  .hobby-grid{ grid-template-columns:1fr; }
+  .hobby-thumb img{ height:220px; }
+}

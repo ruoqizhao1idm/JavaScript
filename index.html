@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Qi’s Portfolio</title>
+  <link rel="stylesheet" href="style.css" />
+  <link rel="icon" href="pt/logo.png" />
+</head>
+
+<body>
+<header class="site-header">
+  <div class="container nav-container">
+    <a class="logo" href=" ">
+      <img src="pt/logo.png" alt="Qi Logo" />
+      <span>Portfolio</span>
+    </a >
+    <nav class="main-nav" aria-label="Main navigation">
+      <ul class="menu">
+        <!-- Home -->
+        <li class="menu-item"><a href="index.html">Home</a>
+
+        <!-- About me dropdown -->
+        <li class="menu-item dropdown">
+          About me
+          <ul class="submenu" aria-label="About me submenu">
+            <li><a href="about me_work.html">My work</a></li>
+            <li><a href="about me_hobby.html">My hobby</a></li>
+          </ul>
+        </li>
+
+        <!-- Projects -->
+        <li class="menu-item"><a href="project.html">Projects</a></li>
+
+        <!-- Contact -->
+        <li class="menu-item"><a href="contact me.html">Contact me</a></li>
+      </ul>
+    </nav>
+  </div>
+</header>
+
+<!-- Hero Section (Slider) -->
+<section class="hero" id="hero-slider"></section>
+
+<!-- Link to external JavaScript -->
+<script src="script.js"></script>
+
+<!-- About Section -->
+<section class="about-split container" id="about">
+  <div class="about-text card">
+    <h2>About me</h2>
+    <p>
+      Hi! I’m a digital media designer with a background in Network and New Media
+      from Northwestern University, and currently pursuing my master’s in
+      Interactive Digital Media at Trinity College Dublin.
+    </p >
+    <a class="btn" href="about me-work.html">Explore</a >
+  </div>
+  <div class="about-image card">
+    <img src="pt/a1.png" alt="Qi" />
+  </div>
+</section>
+
+<section class="about-split container about-split--reverse">
+  <div class="about-image card">
+    <img src="pt/a2.png" alt="Qi" />
+  </div>
+  <div class="about-text card">
+    <h2>My Hobby</h2>
+    <p>
+      I enjoy exploring creativity through photography, content creation,
+      and short video production. I love discovering innovative ideas and
+      expressing them in unique visual ways.
+    </p >
+    <a class="btn" href="about me-hobby.html">Explore</a >
+  </div>
+</section>
+
+<!-- Projects Section -->
+<section class="projects container" id="projects">
+  <h2 class="section-title">Project</h2>
+  <div class="projects-grid">
+    <a class="project-card project-card--large" href="project.html#project1">
+      <img src="pt/p1.png" alt="Hydrology Museum poster" />
+      <div class="project-overlay">
+        <h3>Hydrology Museum</h3>
+        <p>System Design For Psychology Knowledge Dissemination In Museums</p >
+      </div>
+    </a >
+    <a class="project-card" href="project.html#project2">
+      <img src="pt/p2.png" alt="Attention Economy eye-tracking" />
+      <div class="project-caption">
+        <strong>Attention Economy:</strong>
+        <span>Studying user attention through eye-tracking experiments.</span>
+      </div>
+    </a >
+    <a class="project-card" href="project.html#project3">
+      <img src="pt/p3.png" alt="UI App screens" />
+      <div class="project-caption">
+        <strong>UI / App Design:</strong>
+        <span>Designing intuitive and user-friendly mobile interfaces.</span>
+      </div>
+    </a >
+  </div>
+</section>
+
+<!-- Contact Section -->
+<section class="contact container" id="contact">
+  <h2 class="section-title">Contact Me</h2>
+  <div class="contact-grid">
+    <div class="contact-social">
+      <a href="https://www.instagram.com/qqqq25846?igsh=dTcwYzN3c2hwaXZk&utm_source=qr"
+         target="_blank" rel="noopener">
+        <img src="pt/ins.png" alt="Instagram logo" />
+      </a >
+      <p>Feel free to leave your suggestions or messages.</p >
+    </div>
+    <form class="contact-form"
+          action="mailto:zhaor3@tcd.ie"
+          method="post"
+          enctype="text/plain">
+      <label for="email">Email</label>
+      <input id="email" name="email" type="email"
+             placeholder="name@example.com" required />
+      <label for="message">Message</label>
+      <textarea id="message" name="message" rows="6"
+                placeholder="Write something..." required></textarea>
+      <button type="submit" class="btn">Send</button>
+    </form>
+  </div>
+</section>
+
+<footer class="site-footer">
+  <div class="container">
+    © 2025 Ruoqi Zhao Portfolio. All rights reserved.
+  </div>
+</footer>
+</body>
+</html>

@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Contact Me - Qi’s Portfolio</title>
+  <link rel="stylesheet" href="style.css" />
+  <link rel="icon" href="pt/logo.png" />
+</head>
+
+<body>
+<header class="site-header">
+  <div class="container nav-container">
+    <a class="logo" href=" ">
+      <img src="pt/logo.png" alt="Qi Logo" />
+      <span>Portfolio</span>
+    </a >
+
+     <nav class="main-nav" aria-label="Main navigation">
+      <ul class="menu">
+        <li class="menu-item"><a href="index.html">Home</a></li>
+        <li class="menu-item dropdown has-caret">
+          About me
+          <ul class="submenu" aria-label="About me submenu">
+            <li><a href="about me_work.html">My work</a ></li>
+            <li><a href="about me_hobby.html">My hobby</a></li>
+          </ul>
+        </li>
+        <li class="menu-item"><a href="project.html">Projects</a></li>
+        <li class="menu-item"><a class="active" href="contact me.html">Contact me</a ></li>
+      </ul>
+    </nav>
+  </div>
+</header>
+
+<!-- Contact section -->
+<section class="contact-hero">
+  <div class="container contact-grid">
+    <div class="contact-left">
+      <h1>Contact me</h1>
+      <p>If you have any questions, feel free to contact me.</p >
+
+      <form class="contact-form" action="mailto:zhaor3@tcd.ie" method="post" enctype="text/plain">
+        <div class="name-fields">
+          <div>
+            <label for="first">First name</label>
+            <input id="first" name="first" type="text" placeholder="Jane" required />
+          </div>
+          <div>
+            <label for="last">Last name</label>
+            <input id="last" name="last" type="text" placeholder="Smitherton" required />
+          </div>
+        </div>
+
+        <label for="email">Email address</label>
+        <input id="email" name="email" type="email" placeholder="email@example.com" required />
+
+        <label for="message">Your message</label>
+        <textarea id="message" name="message" rows="6" placeholder="Write something..." required></textarea>
+
+        <button type="submit" class="btn">Submit</button>
+      </form>
+    </div>
+
+    <div class="contact-right">
+      <a href="https://www.instagram.com/qqqq25846?igsh=dTcwYzN3c2hwaXZk&utm_source=qr"
+         target="_blank" rel="noopener" class="insta-logo">
+        <img src="pt/ins.png" alt="Instagram logo" />
+      </a >
+      <p>My Instagram</p >
+      <p>My Email: zhaor3@tcd.ie</p >
+    </div>
+  </div>
+</section>
+
+<footer class="site-footer">
+  <div class="container">
+    © 2025 Ruoqi Zhao Portfolio. All rights reserved.
+  </div>
+</footer>
+
+<!-- ===========================
+     JS interaction script
+=========================== -->
+<script>
+document.addEventListener("DOMContentLoaded", () => {
+  const contactForm = document.querySelector(".contact-form");
+
+  if (!contactForm) {
+    console.error("Contact form not found!");
+    return;
+  }
+
+  contactForm.addEventListener("submit", (event) => {
+    event.preventDefault();
+
+    const first = document.getElementById("first")?.value.trim() || "(Not provided)";
+    const last = document.getElementById("last")?.value.trim() || "(Not provided)";
+    const email = document.getElementById("email")?.value.trim() || "(Not provided)";
+    const message = document.getElementById("message")?.value.trim() || "(No message)";
+
+    // Log formatted information to the console
+    console.log(`
+=========  New Form Submission =========
+ Name: ${first} ${last}
+ Email: ${email}
+ Message: ${message}
+=========================================
+    `);
+
+    // Show confirmation popup
+    alert(" Thank you for your message! Your information has been submitted.");
+
+    // Clear the form
+    contactForm.reset();
+  });
+});
+</script>
+<!-- Footer -->
+<footer class="site-footer">
+  <div class="container">
+    © 2025 Ruoqi Zhao Portfolio. All rights reserved.
+  </div>
+</footer>
+</body>
+</html>
